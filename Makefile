@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: arde-jes <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/19 17:52:08 by arde-jes          #+#    #+#              #
+#    Updated: 2024/11/19 17:52:15 by arde-jes         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
 SRC = ft_atoi.c ft_bzero.c ft_calloc.c \
@@ -20,7 +32,7 @@ OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fPIC
 
 all: $(NAME)
 
@@ -28,7 +40,7 @@ $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 
 bonus: $(OBJ) $(OBJ_BONUS)
-	ar -rcs $(NAME) $(OBJ_BONUS)
+	ar -rcs $(NAME) $(OBJ) $(OBJ_BONUS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

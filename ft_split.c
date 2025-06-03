@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_count_char(char *s, char c)
+int	ft_count_char(const char *s, char c)
 {
 	int	ct;
 	int	lct;
@@ -38,19 +38,6 @@ int	ft_count_char(char *s, char c)
 	return (lct);
 }
 
-int	ft_betwenc(char *s, char c, int ct)
-{
-	int	ctt;
-
-	ctt = 0;
-	while (s[ct] != c && s[ct] != '\0')
-	{
-		ctt++;
-		ct++;
-	}
-	return (ctt);
-}
-
 void	*ft_free(char **arr)
 {
 	int	i;
@@ -69,8 +56,7 @@ char	**ft_split_2(char const *s, char c, char **arr)
 {
 	int		ct;
 	int		cta;
-	int		len;
-	char	*substr;
+	int		start;
 
 	ct = 0;
 	cta = 0;
@@ -78,12 +64,13 @@ char	**ft_split_2(char const *s, char c, char **arr)
 	{
 		if (s[ct] != c)
 		{
-			len = ft_betwenc((char *)s, c, ct);
-			substr = ft_substr(s, ct, len);
-			if (!substr || substr[0] == '\0')
+			start = ct;
+			while (s[ct] != c && s[ct] != '\0')
+				ct++;
+			arr[cta] = ft_substr(s, start, ct - start);
+			if (arr[cta] == NULL)
 				return (ft_free(arr));
-			arr[cta++] = substr;
-			ct += len;
+			cta++;
 		}
 		else
 			ct++;

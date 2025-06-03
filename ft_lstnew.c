@@ -14,7 +14,7 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*random;
+	t_listptr	random;
 
 	random = malloc(sizeof(t_list));
 	if (random == NULL)
